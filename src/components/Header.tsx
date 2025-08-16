@@ -3,9 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import MobileMenu from "./MobileMenu";
 import LoginModal from "./LoginModal";
+import CartModal from "./CartModal";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const navigation = [
     { name: "SALE", href: "/sale" },
     { name: "NEW ARRIVALS", href: "/new-arrivals" }, 
@@ -38,7 +42,7 @@ const Header = () => {
             {/* Logo */}
             <div className="flex-1 flex justify-center">
               <Link to="/" className="text-2xl font-bold text-primary">
-                Libas
+                Pari
               </Link>
             </div>
 
@@ -51,10 +55,15 @@ const Header = () => {
               <Button variant="ghost" size="icon">
                 <Search className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="relative">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="relative"
+                onClick={() => setIsCartOpen(true)}
+              >
                 <ShoppingBag className="h-5 w-5" />
                 <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  0
+                  2
                 </span>
               </Button>
             </div>
@@ -86,6 +95,11 @@ const Header = () => {
           </div>
         </div>
       </div>
+      
+      <CartModal 
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+      />
     </header>
   );
 };

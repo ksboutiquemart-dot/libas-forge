@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Libas Fashion Design System */
+/* Pari Fashion Design System */
 
 @layer base {
   :root {
@@ -16,7 +16,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    /* Purple/Pink primary palette like Libas */
+    /* Purple/Pink primary palette like Pari */
     --primary: 291 47% 51%;
     --primary-foreground: 0 0% 98%;
 

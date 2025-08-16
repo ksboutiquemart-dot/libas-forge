@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, Star } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 interface EnhancedProductCardProps {
   title: string;
@@ -30,6 +32,38 @@ const EnhancedProductCard = ({
 }: EnhancedProductCardProps) => {
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [selectedSize, setSelectedSize] = useState("");
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleQuickView = () => {
+    navigate('/product/1'); // Navigate to product detail page
+  };
+
+  const handleAddToCart = () => {
+    if (!selectedSize) {
+      toast({
+        title: "Please select a size first",
+        variant: "destructive"
+      });
+      return;
+    }
+    
+    // Check if user is logged in (will be connected to Supabase)
+    const isLoggedIn = false;
+    
+    if (!isLoggedIn) {
+      toast({
+        title: "Please login to add items to cart",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    toast({
+      title: "Added to cart!",
+      description: `${title} (Size: ${selectedSize})`,
+    });
+  };
 
   return (
     <div className={`group cursor-pointer relative ${className}`}>
@@ -117,8 +151,18 @@ const EnhancedProductCard = ({
           variant="outline" 
           size="sm" 
           className="w-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          onClick={handleQuickView}
         >
           Quick View
+        </Button>
+        
+        {/* Add to Cart Button */}
+        <Button 
+          size="sm" 
+          className="w-full mt-2"
+          onClick={handleAddToCart}
+        >
+          Add to Cart
         </Button>
       </div>
     </div>
