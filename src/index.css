@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Luxury Fashion Design System - Torani Clone */
+/* Libas Fashion Design System */
 
 @layer base {
   :root {
     /* Fashion brand color palette */
-    --background: 0 0% 98%;
+    --background: 0 0% 100%;
     --foreground: 0 0% 5%;
 
     --card: 0 0% 100%;
@@ -16,19 +16,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 5%;
 
-    /* Luxury gold/beige primary palette */
-    --primary: 35 25% 15%;
+    /* Purple/Pink primary palette like Libas */
+    --primary: 291 47% 51%;
     --primary-foreground: 0 0% 98%;
 
     /* Soft neutral secondary */
-    --secondary: 30 8% 95%;
+    --secondary: 0 0% 96%;
     --secondary-foreground: 0 0% 15%;
 
-    --muted: 30 8% 94%;
+    --muted: 0 0% 96%;
     --muted-foreground: 0 0% 45%;
 
-    /* Accent gold tone */
-    --accent: 42 87% 55%;
+    /* Pink accent tone */
+    --accent: 340 82% 85%;
     --accent-foreground: 0 0% 15%;
 
     --destructive: 0 84% 60%;

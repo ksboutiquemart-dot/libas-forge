@@ -1,26 +1,28 @@
 import { Search, ShoppingBag, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import MobileMenu from "./MobileMenu";
+import LoginModal from "./LoginModal";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const navigation = [
-    "RT'S EDIT",
-    "NEW ARRIVALS", 
-    "CELEBRITY CLOSET",
-    "COLLECTIONS",
-    "WOMEN",
-    "MEN",
-    "KIDS WEAR",
-    "ACCESSORIES",
-    "CLIENT DIARIES",
-    "CLEARANCE SALE"
+    { name: "SALE", href: "/sale" },
+    { name: "NEW ARRIVALS", href: "/new-arrivals" }, 
+    { name: "SUITS", href: "/suits" },
+    { name: "KURTAS", href: "/kurtas" },
+    { name: "DRESSES", href: "/dresses" },
+    { name: "COLLECTIONS", href: "/collections" },
+    { name: "KIDS WEAR", href: "/kids" },
+    { name: "ACCESSORIES", href: "/accessories" },
+    { name: "BEST SELLERS", href: "/bestsellers" }
   ];
 
   return (
     <header className="bg-background">
       {/* Announcement Bar */}
-      <div className="bg-[hsl(var(--announcement))] text-[hsl(var(--announcement-foreground))] py-2 text-center text-sm font-medium">
-        JUST DROPPED! EXPLORE OUR LATEST SUMMER COLLECTIONS. SHOP THE SEASON'S MUST-HAVES NOW!
+      <div className="bg-primary text-primary-foreground py-2 text-center text-sm font-medium">
+        🎉 MEGA SALE! UP TO 70% OFF ON BESTSELLERS | FREE SHIPPING ON ORDERS ABOVE ₹999
       </div>
 
       {/* Main Header */}
@@ -35,20 +37,25 @@ const Header = () => {
             
             {/* Logo */}
             <div className="flex-1 flex justify-center">
-              <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center">
-                <span className="text-xl font-bold text-primary">T</span>
-              </div>
+              <Link to="/" className="text-2xl font-bold text-primary">
+                Libas
+              </Link>
             </div>
 
             <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
+              <LoginModal>
+                <Button variant="ghost" size="icon">
+                  <User className="h-5 w-5" />
+                </Button>
+              </LoginModal>
               <Button variant="ghost" size="icon">
                 <Search className="h-5 w-5" />
               </Button>
               <Button variant="ghost" size="icon" className="relative">
                 <ShoppingBag className="h-5 w-5" />
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  0
+                </span>
               </Button>
             </div>
           </div>
@@ -57,13 +64,13 @@ const Header = () => {
           <nav className="hidden lg:block pb-4">
             <ul className="flex items-center justify-center space-x-8">
               {navigation.map((item) => (
-                <li key={item}>
-                  <a 
-                    href="#" 
+                <li key={item.name}>
+                  <Link 
+                    to={item.href} 
                     className="text-sm font-medium text-foreground hover:text-primary transition-colors"
                   >
-                    {item}
-                  </a>
+                    {item.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -71,9 +78,11 @@ const Header = () => {
 
           {/* Mobile menu button */}
           <div className="lg:hidden pb-4 flex justify-center">
-            <Button variant="ghost" size="icon">
-              <Menu className="h-5 w-5" />
-            </Button>
+            <MobileMenu>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </MobileMenu>
           </div>
         </div>
       </div>
